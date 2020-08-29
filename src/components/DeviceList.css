@@ -1,0 +1,32 @@
+.card {
+  border: 1px solid #057bff;
+  padding: 15px;
+  margin-top: 10px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-container .icon {
+  margin-right: 10px;
+}
+
+.title {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+}
+
+.icon-container .icon {
+  cursor: pointer;
+}
