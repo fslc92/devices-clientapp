@@ -13,7 +13,7 @@ ReactJS app that connects to a REST API to manage Devices.
 npm install
 ```
 
-## Run
+## Run App
 
 Make sure to clone the [Local Server App](https://github.com/NinjaMSP/devicesTask_serverApp) and have it up and running.
 
@@ -21,4 +21,10 @@ To start the app:
 
 ```
 npm start
+```
+
+## Run tests
+
+```
+npm run test
 ```

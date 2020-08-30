@@ -14,11 +14,13 @@ export default ({
     <div className="card">
       <div className="card-content">
         <div className="title-container">
-          <FontAwesomeIcon
-            icon={["fab", typeIcon]}
-            size="lg"
-            className="icon"
-          />
+          {typeIcon && (
+            <FontAwesomeIcon
+              icon={["fab", typeIcon]}
+              size="lg"
+              className="icon"
+            />
+          )}
           <a className="title" onClick={handleClick}>
             {system_name}
           </a>
