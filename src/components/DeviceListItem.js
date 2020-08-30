@@ -3,7 +3,7 @@ import "./DeviceList.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default ({ device, typeIcon, handleClick, handleDelete }) => {
-  const { id, system_name, type, hdd_capacity } = device;
+  const { system_name, type, hdd_capacity } = device;
   return (
     <div className="card">
       <div className="card-content">
@@ -19,7 +19,7 @@ export default ({ device, typeIcon, handleClick, handleDelete }) => {
         </div>
 
         <span className="subtitle">{type}</span>
-        <span className="description">{hdd_capacity} MB</span>
+        <span className="description">{hdd_capacity} GB</span>
       </div>
       <div className="icon-container">
         <FontAwesomeIcon

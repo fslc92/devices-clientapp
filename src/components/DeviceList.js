@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DropdownMultiselect from "react-multiselect-dropdown-bootstrap";
+
 import { Context as DeviceContext } from "../context/DeviceContext";
 import DeviceListItem from "./DeviceListItem";
 import DeviceModal from "./DeviceModal";
@@ -8,7 +12,7 @@ import ConfirmModal from "./ConfirmModal";
 
 const DeviceList = () => {
   const {
-    state: devices,
+    state,
     fetchDevices,
     addDevice,
     updateDevice,
@@ -23,6 +27,9 @@ const DeviceList = () => {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedDevice, setSelectedDevice] = useState(null);
+  const [typeFilter, setTypeFilter] = useState([]);
+  const [sortBy, setSortBy] = useState("system_name");
+  const [sortByTitle, setSortByTitle] = useState("System Name");
 
   const handleCloseAdd = () => setShowAddModal(false);
   const handleShowAdd = () => setShowAddModal(true);
@@ -46,10 +53,66 @@ const DeviceList = () => {
     handleCloseDelete();
   };
 
-  const listDevices = () => {
-    if (!devices) {
+  const onTypeFilterChange = (typesSelected) => {
+    setTypeFilter(typesSelected);
+  };
+
+  const handleSortTypeChange = (title, option) => {
+    setSortBy(option);
+    setSortByTitle(title);
+  };
+
+  const renderFilters = () => {
+    return (
+      <div className="filters-container">
+        <div className="filter">
+          <span className="label">Device Type</span>
+          <DropdownMultiselect
+            options={["MAC", "WINDOWS_SERVER", "WINDOWS_WORKSTATION"]}
+            name="Device Type"
+            handleOnChange={onTypeFilterChange}
+          />
+        </div>
+        <div className="filter">
+          <span className="label">Sort By</span>
+          <DropdownButton id="dropdown-basic-button" title={sortByTitle}>
+            <Dropdown.Item
+              onClick={() => handleSortTypeChange("System Name", "system_name")}
+            >
+              System Name
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => handleSortTypeChange("Type", "type")}>
+              Type
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={() =>
+                handleSortTypeChange("HDD Capacity", "hdd_capacity")
+              }
+            >
+              HDD Capacity
+            </Dropdown.Item>
+          </DropdownButton>
+        </div>
+      </div>
+    );
+  };
+
+  const renderListDevices = () => {
+    if (!state) {
       return null;
     }
+    let devices = state;
+    if (typeFilter.length > 0) {
+      devices = state.filter((device) => typeFilter.includes(device.type));
+    }
+    if (sortBy) {
+      devices.sort((aP, bP) => {
+        const a = isNaN(Number(aP[sortBy])) ? aP[sortBy] : Number(aP[sortBy]);
+        const b = isNaN(Number(bP[sortBy])) ? bP[sortBy] : Number(bP[sortBy]);
+        return a > b ? 1 : b > a ? -1 : 0;
+      });
+    }
+
     return devices.map((device) => (
       <DeviceListItem
         key={device.id}
@@ -73,10 +136,11 @@ const DeviceList = () => {
 
   return (
     <div>
+      {renderFilters()}
       <Button variant="outline-primary" onClick={handleShowAdd}>
         <FontAwesomeIcon icon="plus" /> Add device
       </Button>
-      {listDevices()}
+      {renderListDevices()}
       <DeviceModal
         title="Add Device"
         show={showAddModal}
@@ -100,7 +164,7 @@ const DeviceList = () => {
       >
         <h6>
           Are you sure that you want to delete{" "}
-          {selectedDevice && selectedDevice.system_name}?
+          <b>{selectedDevice && selectedDevice.system_name}</b>?
         </h6>
       </ConfirmModal>
     </div>

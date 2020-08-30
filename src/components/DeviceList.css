@@ -30,3 +30,38 @@
 .icon-container .icon {
   cursor: pointer;
 }
+
+.filters-container {
+  background: #f7f7f7;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.filters-container .filter {
+  display: flex;
+  align-items: center;
+}
+
+.filters-container .filter .label {
+  font-weight: bold;
+  margin-right: 10px;
+  color: #3a3a3a;
+  width: 150px;
+}
+
+.filters-container .filter .dropdown {
+  width: 300px;
+}
+
+.filters-container .filter .dropdown button {
+  background-color: transparent;
+  width: 100%;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid transparent;
+}
+.filters-container .filter .dropdown button.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(216, 217, 219, 0.5);
+}

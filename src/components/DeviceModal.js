@@ -18,7 +18,7 @@ export default ({ show, title, initValues, handleClose, onSubmit }) => {
   }, [initValues]);
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose} animation={false}>
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
