@@ -12,7 +12,7 @@ export default ({
   onSubmit,
 }) => {
   const [systemName, setSystemName] = useState("");
-  const [type, setType] = useState(deviceTypes[0]);
+  const [type, setType] = useState(deviceTypes[0].key);
   const [capacity, setCapacity] = useState(0);
   const [validated, setValidated] = useState(false);
 
@@ -27,7 +27,7 @@ export default ({
 
   const clearValues = () => {
     setSystemName("");
-    setType(deviceTypes[0]);
+    setType(deviceTypes[0].key);
     setCapacity(0);
     setValidated(false);
   };
@@ -75,8 +75,8 @@ export default ({
               required
             >
               {deviceTypes.map((type) => (
-                <option key={type} value={type}>
-                  {type}
+                <option key={type.key} value={type.key}>
+                  {type.label}
                 </option>
               ))}
             </Form.Control>

@@ -2,7 +2,13 @@ import React from "react";
 import "./DeviceList.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default ({ device, typeIcon, handleClick, handleDelete }) => {
+export default ({
+  device,
+  deviceTypes,
+  typeIcon,
+  handleClick,
+  handleDelete,
+}) => {
   const { system_name, type, hdd_capacity } = device;
   return (
     <div className="card">
@@ -18,7 +24,9 @@ export default ({ device, typeIcon, handleClick, handleDelete }) => {
           </a>
         </div>
 
-        <span className="subtitle">{type}</span>
+        <span className="subtitle">
+          {deviceTypes.find((dt) => dt.key === type).label}
+        </span>
         <span className="description">{hdd_capacity} GB</span>
       </div>
       <div className="icon-container">

@@ -118,6 +118,7 @@ const DeviceList = () => {
       <DeviceListItem
         key={device.id}
         device={device}
+        deviceTypes={config.deviceTypes}
         typeIcon={
           device.type && device.type.toLowerCase().includes("windows")
             ? "windows"
