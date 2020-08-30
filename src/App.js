@@ -13,9 +13,10 @@ import {
   faTrashAlt,
   faPlus,
   faEdit,
+  faUserNinja,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(fab, faTrashAlt, faTrash, faPlus, faEdit);
+library.add(fab, faTrashAlt, faTrash, faPlus, faEdit, faUserNinja);
 
 function App() {
   return (
