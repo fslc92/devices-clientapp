@@ -31,9 +31,16 @@ export default ({
       </div>
       <div className="icon-container">
         <FontAwesomeIcon
+          icon="edit"
+          onClick={handleClick}
+          className="icon"
+          color="#067dfe"
+        />
+        <FontAwesomeIcon
           icon="trash-alt"
           onClick={handleDelete}
           className="icon"
+          color="#6d6d6d"
         />
       </div>
     </div>

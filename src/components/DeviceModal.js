@@ -51,7 +51,7 @@ export default ({
   };
 
   return (
-    <Modal show={show} onHide={handleClose} animation={false}>
+    <Modal show={show} onHide={handleClose} animation={true}>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>
