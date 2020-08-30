@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import DeviceManager from "./components/DeviceManager";
+import Menu from "./components/Menu";
 import DeviceList from "./components/DeviceList";
 import { Provider as DeviceProvider } from "./context/DeviceContext";
 
@@ -15,9 +15,9 @@ library.add(fab, faTrashAlt, faTrash, faPlus);
 function App() {
   return (
     <DeviceProvider>
-      <DeviceManager>
+      <Menu>
         <DeviceList />
-      </DeviceManager>
+      </Menu>
     </DeviceProvider>
   );
 }

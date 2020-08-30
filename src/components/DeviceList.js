@@ -9,6 +9,7 @@ import { Context as DeviceContext } from "../context/DeviceContext";
 import DeviceListItem from "./DeviceListItem";
 import DeviceModal from "./DeviceModal";
 import ConfirmModal from "./ConfirmModal";
+import config from "../config/config";
 
 const DeviceList = () => {
   const {
@@ -68,7 +69,7 @@ const DeviceList = () => {
         <div className="filter">
           <span className="label">Device Type</span>
           <DropdownMultiselect
-            options={["MAC", "WINDOWS_SERVER", "WINDOWS_WORKSTATION"]}
+            options={config.deviceTypes}
             name="Device Type"
             handleOnChange={onTypeFilterChange}
           />
@@ -143,12 +144,14 @@ const DeviceList = () => {
       {renderListDevices()}
       <DeviceModal
         title="Add Device"
+        deviceTypes={config.deviceTypes}
         show={showAddModal}
         handleClose={handleCloseAdd}
         onSubmit={onAddDeviceSubmit}
       />
       <DeviceModal
-        title="Update Device"
+        title="Edit Device"
+        deviceTypes={config.deviceTypes}
         show={showUpdateModal}
         handleClose={handleCloseUpdate}
         initValues={selectedDevice}

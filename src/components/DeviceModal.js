@@ -3,9 +3,16 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-export default ({ show, title, initValues, handleClose, onSubmit }) => {
+export default ({
+  show,
+  title,
+  deviceTypes,
+  initValues,
+  handleClose,
+  onSubmit,
+}) => {
   const [systemName, setSystemName] = useState("");
-  const [type, setType] = useState("WINDOWS_WORKSTATION");
+  const [type, setType] = useState(deviceTypes[0]);
   const [capacity, setCapacity] = useState(0);
   const [validated, setValidated] = useState(false);
 
@@ -20,15 +27,15 @@ export default ({ show, title, initValues, handleClose, onSubmit }) => {
 
   const clearValues = () => {
     setSystemName("");
-    setType("WINDOWS_WORKSTATION");
+    setType(deviceTypes[0]);
     setCapacity(0);
     setValidated(false);
   };
 
   const handleSubmit = async (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
       setValidated(true);
       return;
@@ -67,9 +74,11 @@ export default ({ show, title, initValues, handleClose, onSubmit }) => {
               onChange={(e) => setType(e.target.value)}
               required
             >
-              <option value="WINDOWS_WORKSTATION">Windows Workstation</option>
-              <option value="WINDOWS_SERVER">Windows Server</option>
-              <option value="MAC">Mac</option>
+              {deviceTypes.map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput2">
