@@ -7,6 +7,7 @@ export default ({ show, title, initValues, handleClose, onSubmit }) => {
   const [systemName, setSystemName] = useState("");
   const [type, setType] = useState("WINDOWS_WORKSTATION");
   const [capacity, setCapacity] = useState(0);
+  const [validated, setValidated] = useState(false);
 
   useEffect(() => {
     if (initValues) {
@@ -17,19 +18,45 @@ export default ({ show, title, initValues, handleClose, onSubmit }) => {
     }
   }, [initValues]);
 
+  const clearValues = () => {
+    setSystemName("");
+    setType("WINDOWS_WORKSTATION");
+    setCapacity(0);
+    setValidated(false);
+  };
+
+  const handleSubmit = async (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+      setValidated(true);
+      return;
+    }
+
+    const deviceInfo = {
+      systemName,
+      type,
+      capacity,
+    };
+    await onSubmit(deviceInfo);
+    clearValues();
+  };
+
   return (
     <Modal show={show} onHide={handleClose} animation={false}>
-      <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form>
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Modal.Header closeButton>
+          <Modal.Title>{title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
           <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Label>System Name</Form.Label>
             <Form.Control
               type="text"
               value={systemName}
               onChange={(e) => setSystemName(e.target.value)}
+              required
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlSelect1">
@@ -38,6 +65,7 @@ export default ({ show, title, initValues, handleClose, onSubmit }) => {
               as="select"
               value={type}
               onChange={(e) => setType(e.target.value)}
+              required
             >
               <option value="WINDOWS_WORKSTATION">Windows Workstation</option>
               <option value="WINDOWS_SERVER">Windows Server</option>
@@ -50,28 +78,19 @@ export default ({ show, title, initValues, handleClose, onSubmit }) => {
               type="number"
               value={capacity}
               onChange={(e) => setCapacity(e.target.value)}
+              required
             />
           </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button
-          variant="primary"
-          onClick={() => {
-            const deviceInfo = {
-              systemName,
-              type,
-              capacity,
-            };
-            onSubmit(deviceInfo);
-          }}
-        >
-          Save Changes
-        </Button>
-      </Modal.Footer>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" type="submit">
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Form>
     </Modal>
   );
 };
