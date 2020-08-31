@@ -1,5 +1,5 @@
 import React from "react";
-import "./DeviceList.css";
+import "./DeviceList.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default ({

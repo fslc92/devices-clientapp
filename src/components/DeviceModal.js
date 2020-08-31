@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import "./DeviceModal.scss";
 
 export default ({
   show,
@@ -13,7 +14,7 @@ export default ({
 }) => {
   const [systemName, setSystemName] = useState("");
   const [type, setType] = useState(deviceTypes[0].key);
-  const [capacity, setCapacity] = useState(0);
+  const [capacity, setCapacity] = useState(1);
   const [validated, setValidated] = useState(false);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export default ({
   const clearValues = () => {
     setSystemName("");
     setType(deviceTypes[0].key);
-    setCapacity(0);
+    setCapacity(1);
     setValidated(false);
   };
 
@@ -82,12 +83,13 @@ export default ({
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput2">
-            <Form.Label>HDD Capcity (GB)</Form.Label>
+            <Form.Label>HDD Capacity (GB)</Form.Label>
             <Form.Control
               type="number"
               value={capacity}
               onChange={(e) => setCapacity(e.target.value)}
               required
+              min="1"
             />
           </Form.Group>
         </Modal.Body>

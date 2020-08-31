@@ -137,9 +137,13 @@ const DeviceList = () => {
   };
 
   return (
-    <div>
+    <div className="devices-container">
       {renderFilters()}
-      <Button variant="outline-primary" onClick={handleShowAdd}>
+      <Button
+        variant="outline-primary"
+        onClick={handleShowAdd}
+        className="btn-add"
+      >
         <FontAwesomeIcon icon="plus" /> Add device
       </Button>
       {renderListDevices()}

@@ -1,0 +1,85 @@
+.devices-container {
+  padding-bottom: 40px;
+}
+
+.btn-add {
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+.card {
+  border: 1px solid #057bff;
+  padding: 15px;
+  margin-top: 10px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-container .icon {
+  margin-right: 10px;
+}
+
+.title {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+}
+
+.icon-container .icon {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.filters-container {
+  background: #f7f7f7;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  .filter {
+    display: flex;
+    align-items: center;
+
+    .label {
+      font-weight: bold;
+      margin-right: 10px;
+      color: #3a3a3a;
+      width: 150px;
+    }
+
+    .dropdown {
+      width: 300px;
+
+      button {
+        background-color: transparent;
+        width: 100%;
+        color: black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid transparent;
+
+        &.btn-primary:focus {
+          box-shadow: 0 0 0 0.2rem rgba(216, 217, 219, 0.5);
+        }
+
+        &.btn-primary:active {
+          box-shadow: 0 0 0 0.2rem rgba(216, 217, 219, 0.5);
+          background-color: #dae0e5;
+          border-color: #d3d9df;
+          color: #212529;
+        }
+      }
+    }
+  }
+}

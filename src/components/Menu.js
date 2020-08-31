@@ -1,7 +1,7 @@
 import React, { Children } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Container from "react-bootstrap/Container";
-import "./Menu.css";
+import "./Menu.scss";
 
 export default ({ children }) => {
   return (
@@ -9,7 +9,8 @@ export default ({ children }) => {
       <div className="masthead">
         <Container>
           <h3>
-            <FontAwesomeIcon icon="user-ninja" /> Device Manager
+            <FontAwesomeIcon icon="user-ninja" className="logo" /> Device
+            Manager
           </h3>
         </Container>
       </div>
