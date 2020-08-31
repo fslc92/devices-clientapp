@@ -1,5 +1,6 @@
 import React from "react";
 import "./DeviceList.scss";
+import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default ({
@@ -21,9 +22,9 @@ export default ({
               className="icon"
             />
           )}
-          <a className="title" onClick={handleClick}>
+          <Button className="title" onClick={handleClick} variant="link">
             {system_name}
-          </a>
+          </Button>
         </div>
 
         <span className="subtitle">
