@@ -8,9 +8,9 @@ export default ({ children }) => {
     <>
       <div className="masthead">
         <Container>
-          <h1>
+          <h3>
             <FontAwesomeIcon icon="user-ninja" /> Device Manager
-          </h1>
+          </h3>
         </Container>
       </div>
       <Container>{children}</Container>

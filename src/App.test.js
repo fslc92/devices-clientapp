@@ -4,6 +4,6 @@ import App from "./App";
 
 test("should render menu header", () => {
   const { getByText } = render(<App />);
-  const headerElement = getByText(/Ninja RMM Device Manager/i);
+  const headerElement = getByText(/Device Manager/i);
   expect(headerElement).toBeInTheDocument();
 });
