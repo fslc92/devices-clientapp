@@ -1,5 +1,6 @@
 export default {
-  devicesApiUrl: "http://localhost:3000",
+  devicesApiUrl:
+    process.env.REACT_APP_DEVICES_API_URL || "http://localhost:3000",
   deviceTypes: [
     { key: "MAC", label: "Mac" },
     { key: "WINDOWS_SERVER", label: "Windows Server" },
