@@ -22,6 +22,7 @@ const DeviceList = () => {
 
   useEffect(() => {
     fetchDevices();
+    // eslint-disable-next-line
   }, []);
 
   const [showAddModal, setShowAddModal] = useState(false);
