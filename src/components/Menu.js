@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Container from "react-bootstrap/Container";
 import "./Menu.scss";
